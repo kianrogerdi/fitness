@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exercise library — strength training for runners</title>
+<meta name="description" content="Exercise library for runners: how each movement is performed and what to watch for while doing it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  HOW TO USE THIS FILE
+  ============================================================
+  1. Put this file in a GitHub repo as index.html (in the root).
+  2. Create a folder next to it called  images/
+  3. Drop your photos in there. Each exercise expects up to three,
+     named after its slug:   images/<slug>-1.jpg, -2.jpg, -3.jpg
+     e.g.  images/leg-press-1.jpg
+     Any photo that is missing just shows a grey box with the
+     filename it is waiting for, so the page doubles as a shot list.
+  4. In repo Settings > Pages, set the source to the main branch,
+     root folder. The site appears at
+     https://<your-username>.github.io/<repo-name>/
+  5. To add an exercise, copy one block in the EXERCISES list at the
+     bottom of this file and edit it. Nothing else needs changing —
+     the filters build themselves from the data.
+  ============================================================
+-->
+
+<style>
+  :root{
+    color-scheme: light;
+    --page:#ffffff;
+    --panel:#f4f6f6;
+    --ink:#15222b;
+    --body:#3a474e;
+    --mute:#76848b;
+    --rule:#dde3e5;
+    --signal:#2f6b4f;
+    --signal-soft:#e4efe9;
+    --chip:#eef1f2;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      color-scheme: dark;
+      --page:#11181c; --panel:#182126; --ink:#eaeff1; --body:#c3ced4;
+      --mute:#8d9ba2; --rule:#2b3840; --signal:#7fc19c; --signal-soft:#1b2d25;
+      --chip:#202b31;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --page:#11181c; --panel:#182126; --ink:#eaeff1; --body:#c3ced4;
+    --mute:#8d9ba2; --rule:#2b3840; --signal:#7fc19c; --signal-soft:#1b2d25;
+    --chip:#202b31;
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px)}
+  body{
+    margin:0;background:var(--page);color:var(--body);
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+
+  /* ---------- hero ---------- */
+  header{border-bottom:1px solid var(--rule);padding:3.5rem 0 2.5rem;margin-bottom:2.5rem}
+  .eyebrow{
+    font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--signal);margin:0 0 .9rem;
+  }
+  h1{
+    font-size:clamp(2rem,6vw,3.1rem);line-height:1.04;letter-spacing:-.03em;
+    font-weight:700;color:var(--ink);margin:0 0 1rem;max-width:18ch;
+  }
+  .intro{
+    font-family:"Spectral",Georgia,serif;font-size:1.06rem;line-height:1.65;
+    max-width:60ch;margin:0;
+  }
+
+  /* ---------- controls ---------- */
+  .controls{margin-bottom:2.25rem}
+  .searchrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.1rem}
+  input[type="search"]{
+    flex:1 1 14rem;min-width:0;font:inherit;font-size:.95rem;
+    padding:.6rem .85rem;border:1px solid var(--rule);background:var(--page);
+    color:var(--ink);border-radius:2px;
+  }
+  input[type="search"]:focus{outline:2px solid var(--signal);outline-offset:-1px}
+  .filtergroup{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-bottom:.6rem}
+  .filtergroup > span{
+    font-size:.75rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--mute);margin-right:.35rem;
+  }
+  button.chip{
+    font:inherit;font-size:.85rem;font-weight:500;cursor:pointer;
+    padding:.32rem .75rem;border:1px solid var(--rule);background:var(--chip);
+    color:var(--body);border-radius:999px;transition:background .12s,color .12s,border-color .12s;
+  }
+  button.chip:hover{border-color:var(--signal)}
+  button.chip[aria-pressed="true"]{
+    background:var(--signal);border-color:var(--signal);color:var(--page);
+  }
+  :root[data-theme="dark"] button.chip[aria-pressed="true"],
+  :root:not([data-theme="light"]) button.chip[aria-pressed="true"]{color:#11181c}
+  .count{font-size:.85rem;color:var(--mute);margin:.9rem 0 0}
+
+  /* ---------- cards ---------- */
+  .card{
+    border-top:1px solid var(--rule);padding:2rem 0;
+  }
+  .card:last-child{border-bottom:1px solid var(--rule)}
+  .card h2{
+    font-size:1.3rem;font-weight:700;color:var(--ink);letter-spacing:-.015em;
+    margin:0 0 .5rem;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
+  .tag{
+    font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:.2rem .5rem;border-radius:2px;background:var(--chip);color:var(--mute);
+  }
+  .tag.pattern{background:var(--signal-soft);color:var(--signal)}
+  .shots{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:0 0 1.5rem;
+  }
+  .shots figure{margin:0}
+  .shots img{
+    display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--panel);
+    border-radius:2px;
+  }
+  .shots .missing{
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    aspect-ratio:4/3;background:var(--panel);border:1px dashed var(--rule);
+    border-radius:2px;color:var(--mute);font-size:.72rem;padding:.5rem;
+    word-break:break-all;line-height:1.35;
+  }
+  .caption{font-size:.78rem;color:var(--mute);margin:.35rem 0 0;line-height:1.35}
+  .body{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .body h3{
+    font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--mute);margin:0 0 .5rem;
+  }
+  .body ul{margin:0;padding-left:1.1rem}
+  .body li{margin-bottom:.4rem;font-size:.95rem}
+  .note{
+    font-family:"Spectral",Georgia,serif;font-style:italic;font-size:.95rem;
+    color:var(--mute);margin:1rem 0 0;max-width:66ch;
+  }
+  .empty{padding:3rem 0;color:var(--mute);text-align:center}
+
+  footer{
+    border-top:1px solid var(--rule);margin-top:4rem;padding:2rem 0 4rem;
+    font-size:.85rem;color:var(--mute);
+  }
+  @media (max-width:40rem){
+    .body{grid-template-columns:1fr;gap:1.1rem}
+    header{padding:2.5rem 0 2rem}
+  }
+  @media print{
+    body{background:#fff;color:#000}
+    .controls,footer{display:none}
+    .card{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Strength training for runners</p>
+    <h1>Exercise library</h1>
+    <p class="intro">How each movement is performed and what to watch for while doing it.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls">
+    <div class="searchrow">
+      <input type="search" id="q" placeholder="Search exercises…" aria-label="Search exercises">
+    </div>
+    <div class="filtergroup" id="categoryFilters"><span>Muscle group</span></div>
+    <div class="filtergroup" id="patternFilters"><span>Movement</span></div>
+    <p class="count" id="count"></p>
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Nothing here is medical advice. Pain that is sharp, that swells, or that is worse the next morning is a reason to see a physiotherapist, not to push through.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EXERCISES — edit this list to add or change exercises.
+   slug       used for the image filenames: images/<slug>-1.jpg
+   categories muscle groups — these build the first filter row
+   patterns   movement patterns — these build the second filter row
+   ============================================================ */
+const EXERCISES = [
+  {
+    slug: "dumbbell-romanian-deadlift",
+    name: "Dumbbell Romanian deadlift",
+    categories: ["Hamstrings", "Glutes", "Lower back"],
+    patterns: ["Hinge"],
+    equipment: "Dumbbells",
+    cues: [
+      "Soft knees, then push the hips back — the hips travel backwards, not down.",
+      "Dumbbells stay in contact with the thighs the whole way.",
+      "Stop when the hamstrings run out of stretch, not when the weights reach the floor.",
+      "Spine stays long. All the movement happens at the hip."
+    ],
+    watch: [
+      "Lower back rounding at the bottom — that is the end of your range, well before the floor.",
+      "Turning it into a squat by bending the knees.",
+      "Bouncing out of the bottom instead of controlling the turnaround."
+    ],
+    note: "Dumbbells will eventually cap the load here. Once you are working with the heaviest pair in the rack, it is time to move to a barbell."
+  },
+  {
+    slug: "leg-press",
+    name: "Leg press machine",
+    categories: ["Quads", "Glutes"],
+    patterns: ["Knee-dominant"],
+    equipment: "Leg press machine",
+    cues: [
+      "Feet in the middle of the platform, roughly hip width.",
+      "Set the depth stops and use exactly the same range every rep.",
+      "Push through the whole foot, not just the toes.",
+      "Knees track out over the second toe for the entire rep."
+    ],
+    watch: [
+      "Knees drifting inward as you push — the single most common fault here.",
+      "Hips rolling off the pad at the bottom, which loads the lower back.",
+      "Slamming into a locked-out knee at the top."
+    ],
+    note: "If a knee is sensitive, the depth stops are the control. Shorten the range rather than reducing the weight first."
+  },
+  {
+    slug: "seated-calf-raise",
+    name: "Seated calf raise, knee bent",
+    categories: ["Calves"],
+    patterns: ["Isolation"],
+    equipment: "Seated calf machine",
+    cues: [
+      "Pad sits on the lower thigh, close to the knee.",
+      "Balls of the feet on the plate, heels hanging free.",
+      "Full stretch at the bottom, two-second squeeze at the top.",
+      "The knee stays bent throughout — that bend is the entire point."
+    ],
+    watch: [
+      "Range quietly shrinking as the set goes on.",
+      "Bouncing through the bottom instead of pausing in the stretch.",
+      "Rushing the lowering phase."
+    ],
+    note: "The bent knee takes the big calf muscle out and leaves the soleus underneath, which is the muscle that carries the most load in running. No other exercise here replaces it. No seated machine in your gym? Sit on a bench with a heavy dumbbell on the lower thigh and the toes on a block."
+  },
+  {
+    slug: "hip-abduction",
+    name: "Hip abduction machine",
+    categories: ["Glutes", "Hip abductors"],
+    patterns: ["Isolation"],
+    equipment: "Hip abduction machine",
+    cues: [
+      "Sit tall against the back pad.",
+      "Push out slowly, pause for a beat at the end, return under control.",
+      "Think about the outside of the hip working."
+    ],
+    watch: [
+      "Leaning back to squeeze out extra range.",
+      "Letting the weight stack slam on the way back in."
+    ],
+    note: "Hip abductor strength is what stops the knee collapsing inward and the pelvis dropping when you are running on one leg, which is most of running."
+  },
+  {
+    slug: "shoulder-press",
+    name: "Shoulder press machine",
+    categories: ["Shoulders", "Triceps"],
+    patterns: ["Vertical push"],
+    equipment: "Shoulder press machine",
+    cues: [
+      "Set the seat so the handles start at about shoulder height.",
+      "Press up without shrugging the shoulders toward the ears.",
+      "Ribs down, do not arch the lower back to finish the rep."
+    ],
+    watch: [
+      "Bouncing out of the bottom position.",
+      "Cutting the range short at the top when it gets hard."
+    ]
+  },
+  {
+    slug: "lat-pulldown",
+    name: "Lat pulldown machine",
+    categories: ["Back", "Biceps"],
+    patterns: ["Vertical pull"],
+    equipment: "Lat pulldown machine",
+    cues: [
+      "Thighs locked under the pad so you are not lifted off the seat.",
+      "Pull the bar to the collarbone — never behind the neck.",
+      "Drive the elbows down toward the hips.",
+      "Control the bar back up instead of letting it drag you."
+    ],
+    watch: [
+      "Leaning far back and turning it into a row.",
+      "Using momentum from the hips to start each rep."
+    ]
+  },
+  {
+    slug: "pallof-press",
+    name: "Pallof press",
+    categories: ["Core"],
+    patterns: ["Anti-rotation"],
+    equipment: "Cable machine or resistance band",
+    cues: [
+      "Stand side-on to the cable, handle at chest height, arms at the chest.",
+      "Press straight out in front, hold a moment, bring it back.",
+      "The job is to stop the torso rotating, not to move the weight.",
+      "Keep breathing — do not hold your breath through the set."
+    ],
+    watch: [
+      "Torso turning toward the cable as the arms extend.",
+      "Hips shifting sideways to cheat the resistance."
+    ],
+    note: "For a runner, the trunk's job is resisting movement rather than creating it. That is why this is here and crunches are not."
+  },
+  {
+    slug: "step-up",
+    name: "Step-up or split squat",
+    categories: ["Quads", "Glutes"],
+    patterns: ["Knee-dominant", "Single leg"],
+    equipment: "Box or bench, dumbbells",
+    cues: [
+      "Start with a low box and a hand on a rail for balance.",
+      "The weaker leg goes first and sets the rep count for both sides.",
+      "Knee tracks over the foot and does not drift inward.",
+      "Drive through the whole working foot rather than pushing off the trailing leg."
+    ],
+    watch: [
+      "Pushing off the back foot to make the rep easier.",
+      "The hip on the free side dropping as you rise.",
+      "Box too high, which forces the knee forward and the torso to collapse."
+    ]
+  },
+  {
+    slug: "hip-thrust",
+    name: "Hip thrust",
+    categories: ["Glutes", "Hamstrings"],
+    patterns: ["Hinge"],
+    equipment: "Bench and barbell, or bodyweight",
+    cues: [
+      "Shoulder blades on the edge of the bench, feet flat.",
+      "Ribs down, chin tucked, eyes forward through the whole rep.",
+      "Finish with the hips level with the knees and shoulders, not higher.",
+      "Pad the bar properly."
+    ],
+    watch: [
+      "Arching the lower back at the top instead of finishing with the glutes.",
+      "Letting the chin and eyes travel up to the ceiling.",
+      "Feet too far forward, which turns it into a hamstring exercise."
+    ]
+  },
+  {
+    slug: "standing-calf-raise",
+    name: "Standing calf raise, knee straight",
+    categories: ["Calves"],
+    patterns: ["Isolation"],
+    equipment: "Calf raise machine, Smith machine, or a step",
+    cues: [
+      "Knee straight but not locked hard.",
+      "Full height on every single rep.",
+      "Slow on the way down, into a full stretch at the bottom.",
+      "End the set when the height starts dropping, not when it starts burning."
+    ],
+    watch: [
+      "Bending the knees to bounce out extra reps.",
+      "Heels rolling in or out at the top.",
+      "Half-range reps once fatigue arrives."
+    ]
+  },
+  {
+    slug: "single-leg-rdl",
+    name: "Single-leg Romanian deadlift",
+    categories: ["Hamstrings", "Glutes"],
+    patterns: ["Hinge", "Single leg"],
+    equipment: "One light dumbbell or kettlebell",
+    cues: [
+      "Keep it light. This is a control exercise, not a loading one.",
+      "Hips stay square to the floor — the free hip must not open toward the ceiling.",
+      "Back leg and torso move together as one straight line.",
+      "A little wobble is the exercise working, not a mistake."
+    ],
+    watch: [
+      "The free hip rotating open, which turns it into a different exercise.",
+      "Rounding the back to reach lower.",
+      "Going so heavy that balance disappears."
+    ]
+  },
+  {
+    slug: "dumbbell-bench-press",
+    name: "Dumbbell bench press",
+    categories: ["Chest", "Shoulders", "Triceps"],
+    patterns: ["Horizontal push"],
+    equipment: "Bench and dumbbells",
+    cues: [
+      "Wrists stacked over the elbows throughout.",
+      "Lower under control to chest level.",
+      "Do not clash the dumbbells together at the top."
+    ],
+    watch: [
+      "Elbows flaring straight out to the sides.",
+      "Dropping the weights fast and bouncing off the chest."
+    ],
+    note: "Push-ups are a perfectly good substitute if the benches are all taken."
+  },
+  {
+    slug: "single-arm-row",
+    name: "Single-arm dumbbell row",
+    categories: ["Back", "Biceps"],
+    patterns: ["Horizontal pull"],
+    equipment: "Dumbbell and bench",
+    cues: [
+      "Flat back, hips square to the floor.",
+      "Pull the dumbbell toward the hip, not the shoulder.",
+      "Control it all the way back down to a full stretch."
+    ],
+    watch: [
+      "Twisting the torso to finish the last few reps.",
+      "Shrugging the shoulder up toward the ear."
+    ]
+  },
+  {
+    slug: "side-plank",
+    name: "Side plank",
+    categories: ["Core"],
+    patterns: ["Anti-lateral flexion"],
+    equipment: "None",
+    cues: [
+      "Elbow directly under the shoulder.",
+      "Hips stacked and lifted into one straight line from ear to ankle.",
+      "Breathe normally rather than bracing and holding your breath."
+    ],
+    watch: [
+      "The top hip rotating forward.",
+      "Hips sagging toward the floor as the hold goes on."
+    ],
+    note: "Dropping to the knees is a sensible regression, not a failure."
+  }
+];
+
+/* ---------- rendering ---------- */
+const list = document.getElementById("list");
+const countEl = document.getElementById("count");
+const qInput = document.getElementById("q");
+const state = { q: "", category: null, pattern: null };
+
+const allCategories = [...new Set(EXERCISES.flatMap(e => e.categories))].sort();
+const allPatterns = [...new Set(EXERCISES.flatMap(e => e.patterns))].sort();
+
+function makeChips(container, values, key) {
+  values.forEach(v => {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.textContent = v;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => {
+      state[key] = state[key] === v ? null : v;
+      [...container.querySelectorAll("button")].forEach(x => {
+        const val = x.dataset.value;
+        x.setAttribute("aria-pressed", String(state[key] === val));
+      });
+      render();
+    });
+    b.dataset.value = v;
+    container.appendChild(b);
+  });
+}
+makeChips(document.getElementById("categoryFilters"), allCategories, "category");
+makeChips(document.getElementById("patternFilters"), allPatterns, "pattern");
+
+qInput.addEventListener("input", e => { state.q = e.target.value.toLowerCase().trim(); render(); });
+
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+
+function shots(ex) {
+  return [1,2,3].map(n => {
+    const src = "images/" + ex.slug + "-" + n + ".jpg";
+    return `<figure>
+      <img src="${src}" alt="${esc(ex.name)}, photo ${n}" loading="lazy"
+           onerror="this.outerHTML='<div class=\\'missing\\'>${esc(src)}</div>'">
+    </figure>`;
+  }).join("");
+}
+
+function card(ex) {
+  return `<article class="card">
+    <h2>${esc(ex.name)}</h2>
+    <div class="tags">
+      ${ex.categories.map(c => `<span class="tag">${esc(c)}</span>`).join("")}
+      ${ex.patterns.map(p => `<span class="tag pattern">${esc(p)}</span>`).join("")}
+      <span class="tag">${esc(ex.equipment)}</span>
+    </div>
+    <div class="shots">${shots(ex)}</div>
+    <div class="body">
+      <div>
+        <h3>How to do it</h3>
+        <ul>${ex.cues.map(c => `<li>${esc(c)}</li>`).join("")}</ul>
+      </div>
+      <div>
+        <h3>What to watch for</h3>
+        <ul>${ex.watch.map(c => `<li>${esc(c)}</li>`).join("")}</ul>
+      </div>
+    </div>
+    ${ex.note ? `<p class="note">${esc(ex.note)}</p>` : ""}
+  </article>`;
+}
+
+function render() {
+  const results = EXERCISES.filter(ex => {
+    if (state.category && !ex.categories.includes(state.category)) return false;
+    if (state.pattern && !ex.patterns.includes(state.pattern)) return false;
+    if (state.q) {
+      const hay = (ex.name + " " + ex.categories.join(" ") + " " + ex.patterns.join(" ") + " " + ex.equipment).toLowerCase();
+      if (!hay.includes(state.q)) return false;
+    }
+    return true;
+  });
+  countEl.textContent = results.length + (results.length === 1 ? " exercise" : " exercises");
+  list.innerHTML = results.length
+    ? results.map(card).join("")
+    : `<p class="empty">Nothing matches those filters.</p>`;
+}
+render();
+</script>
+</body>
+</html>
