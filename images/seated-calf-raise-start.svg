@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img">
+<title>Seated calf raise machine — start</title><desc>Side view line drawing: seated with the thigh pad set and the heel dropped below the plate.</desc>
+<style>
+.ink{stroke:#14202a;fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.fig{stroke:#6E49A8;fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.hd{fill:#6E49A8}
+.pth{stroke:#2F8F62;fill:none;stroke-width:3;stroke-dasharray:7 6;stroke-linecap:round}
+.ld{fill:#2F8F62}
+.lb{fill:#5a686f;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:15px}
+.fl{stroke:#c3cbcf;stroke-width:2;stroke-dasharray:5 5;fill:none}
+@media (prefers-color-scheme:dark){
+.ink{stroke:#e9eef0}.fig{stroke:#A684E0}.hd{fill:#A684E0}
+.pth{stroke:#5FC894}.ld{fill:#5FC894}.lb{fill:#8d9ba2}.fl{stroke:#2f3c44}
+}
+</style>
+<path class="ink" d="M140 340 L470 340"/>
+<path class="ink" d="M158 282 L252 282"/>
+<path class="ink" d="M200 282 L200 340"/>
+<path class="ink" d="M152 282 L146 196"/>
+<path class="ink" d="M266 238 L344 238"/>
+<path class="ink" d="M304 238 L304 196"/>
+<path class="ink" d="M396 300 L452 300 L452 340"/>
+<circle class="hd" cx="166" cy="180" r="15"/>
+<path class="fig" d="M172 194 L206 274"/>
+<path class="fig" d="M206 274 L300 268 L402 308"/>
+<path class="fig" d="M402 308 L444 300"/>
+<text class="lb" x="180" y="322">heel below</text>
+</svg>

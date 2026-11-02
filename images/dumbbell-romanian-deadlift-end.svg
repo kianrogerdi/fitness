@@ -20,5 +20,5 @@
 <path class="fig" d="M280 206 L288 268"/>
 <rect class="ld" x="275" y="266" width="26" height="10" rx="3"/>
 <path class="pth" d="M392 196 C418 210 418 238 402 254"/>
-<text class="lb" x="412" y="190">hips back</text>
+<text class="lb" x="476" y="190" text-anchor="end">hips back</text>
 </svg>

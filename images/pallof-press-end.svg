@@ -24,5 +24,5 @@
 <path class="ink" d="M358 196 L400 196"/>
 <path class="fig" d="M340 160 L372 178 L402 196"/>
 <path class="pth" d="M352 162 L406 176"/>
-<text class="lb" x="416" y="170">press out</text>
+<text class="lb" x="476" y="170" text-anchor="end">press out</text>
 </svg>

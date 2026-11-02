@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img">
+<title>Hip abduction machine — end</title><desc>Side view line drawing: knees pushed apart against the pads.</desc>
+<style>
+.ink{stroke:#14202a;fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.fig{stroke:#6E49A8;fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.hd{fill:#6E49A8}
+.pth{stroke:#2F8F62;fill:none;stroke-width:3;stroke-dasharray:7 6;stroke-linecap:round}
+.ld{fill:#2F8F62}
+.lb{fill:#5a686f;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:15px}
+.fl{stroke:#c3cbcf;stroke-width:2;stroke-dasharray:5 5;fill:none}
+@media (prefers-color-scheme:dark){
+.ink{stroke:#e9eef0}.fig{stroke:#A684E0}.hd{fill:#A684E0}
+.pth{stroke:#5FC894}.ld{fill:#5FC894}.lb{fill:#8d9ba2}.fl{stroke:#2f3c44}
+}
+</style>
+<path class="ink" d="M120 340 L480 340"/>
+<path class="ink" d="M246 258 L354 258"/>
+<path class="ink" d="M250 258 L250 340"/>
+<path class="ink" d="M350 258 L350 340"/>
+<path class="ink" d="M232 276 L232 326"/>
+<path class="ink" d="M368 276 L368 326"/>
+<circle class="hd" cx="300" cy="150" r="18"/>
+<path class="fig" d="M300 168 L300 250"/>
+<path class="fig" d="M300 250 L250 300 L244 338"/>
+<path class="fig" d="M300 250 L350 300 L356 338"/>
+<path class="pth" d="M196 290 L224 290"/>
+<path class="pth" d="M376 290 L404 290"/>
+<text class="lb" x="252" y="206">sit tall</text>
+</svg>
