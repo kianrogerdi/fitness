@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img">
+<title>Dumbbell bench press — end</title><desc>Side view line drawing: dumbbells lowered under control to chest level.</desc>
+<style>
+.ink{stroke:#14202a;fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.fig{stroke:#6E49A8;fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.hd{fill:#6E49A8}
+.pth{stroke:#2F8F62;fill:none;stroke-width:3;stroke-dasharray:7 6;stroke-linecap:round}
+.ld{fill:#2F8F62}
+.lb{fill:#5a686f;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:15px}
+.fl{stroke:#c3cbcf;stroke-width:2;stroke-dasharray:5 5;fill:none}
+@media (prefers-color-scheme:dark){
+.ink{stroke:#e9eef0}.fig{stroke:#A684E0}.hd{fill:#A684E0}
+.pth{stroke:#5FC894}.ld{fill:#5FC894}.lb{fill:#8d9ba2}.fl{stroke:#2f3c44}
+}
+</style>
+<line class="fl" x1="110" y1="340" x2="490" y2="340"/>
+<path class="ink" d="M160 286 L430 286"/>
+<path class="ink" d="M182 286 L182 340"/>
+<path class="ink" d="M410 286 L410 340"/>
+<circle class="hd" cx="188" cy="266" r="15"/>
+<path class="fig" d="M206 276 L330 280"/>
+<path class="fig" d="M330 280 L392 302 L404 340"/>
+<path class="fig" d="M250 276 L212 250 L252 234"/>
+<rect class="ld" x="239" y="224" width="26" height="10" rx="3"/>
+<path class="pth" d="M292 212 L292 244"/>
+<text class="lb" x="306" y="236">chest level</text>
+</svg>
