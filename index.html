@@ -125,18 +125,15 @@
     padding:.2rem .5rem;border-radius:2px;background:var(--chip);color:var(--mute);
   }
   .tag.pattern{background:var(--signal-soft);color:var(--signal)}
-  .shots{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:0 0 1.5rem;
-  }
-  .shots figure{margin:0}
+  .shots{margin:0 0 1.5rem;max-width:25rem}
   .shots img{
-    display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--panel);
+    display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:var(--panel);
     border-radius:2px;
   }
   .shots .missing{
     display:flex;align-items:center;justify-content:center;text-align:center;
-    aspect-ratio:4/3;background:var(--panel);border:1px dashed var(--rule);
-    border-radius:2px;color:var(--mute);font-size:.72rem;padding:.5rem;
+    aspect-ratio:3/2;background:var(--panel);border:1px dashed var(--rule);
+    border-radius:2px;color:var(--mute);font-size:.78rem;padding:.5rem;
     word-break:break-all;line-height:1.35;
   }
   .caption{font-size:.78rem;color:var(--mute);margin:.35rem 0 0;line-height:1.35}
@@ -200,7 +197,9 @@
 <script>
 /* ============================================================
    EXERCISES — edit this list to add or change exercises.
-   slug       used for the image filenames: images/<slug>-1.jpg
+   slug       used for the illustration filename: images/<slug>.svg
+   image      optional — set it to use a different file, e.g. a photo:
+              image: "images/leg-press.jpg"
    categories muscle groups — these build the first filter row
    patterns   movement patterns — these build the second filter row
    ============================================================ */
@@ -490,13 +489,9 @@ qInput.addEventListener("input", e => { state.q = e.target.value.toLowerCase().t
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
 
 function shots(ex) {
-  return [1,2,3].map(n => {
-    const src = "images/" + ex.slug + "-" + n + ".jpg";
-    return `<figure>
-      <img src="${src}" alt="${esc(ex.name)}, photo ${n}" loading="lazy"
-           onerror="this.outerHTML='<div class=\\'missing\\'>${esc(src)}</div>'">
-    </figure>`;
-  }).join("");
+  const src = ex.image || ("images/" + ex.slug + ".svg");
+  return `<img src="${src}" alt="${esc(ex.name)}" loading="lazy"
+       onerror="this.outerHTML='<div class=\\'missing\\'>${esc(src)}</div>'">`;
 }
 
 function card(ex) {

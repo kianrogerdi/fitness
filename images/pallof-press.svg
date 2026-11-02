@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img">
+<title>Pallof press</title><desc>Side view standing side-on to a cable: the hands shown faintly at the chest and solidly pressed straight out, with a green line marking the press.</desc>
+<style>
+.ink{stroke:#14202a;fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.fig{stroke:#6E49A8;fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.gho{stroke:#6E49A8;fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:.3}
+.hd{fill:#6E49A8}
+.hdg{fill:#6E49A8;opacity:.3}
+.pth{stroke:#2F8F62;fill:none;stroke-width:3;stroke-dasharray:7 6;stroke-linecap:round}
+.ld{fill:#2F8F62}
+.ldg{fill:#2F8F62;opacity:.3}
+.lb{fill:#5a686f;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:15px}
+.fl{stroke:#c3cbcf;stroke-width:2;stroke-dasharray:5 5;fill:none}
+@media (prefers-color-scheme:dark){
+.ink{stroke:#e9eef0}
+.fig,.gho{stroke:#A684E0}
+.hd,.hdg{fill:#A684E0}
+.pth{stroke:#5FC894}
+.ld,.ldg{fill:#5FC894}
+.lb{fill:#8d9ba2}
+.fl{stroke:#2f3c44}
+}
+</style>
+<line class="fl" x1="110" y1="340" x2="490" y2="340"/>
+<path class="ink" d="M150 120 L150 340"/>
+<path class="ink" d="M140 120 L160 120"/>
+<circle class="hd" cx="340" cy="124" r="17"/>
+<path class="fig" d="M340 141 L340 228"/>
+<path class="fig" d="M340 228 L316 284 L310 340"/>
+<path class="fig" d="M340 228 L364 284 L372 340"/>
+<path class="gho" d="M340 160 L320 186 L316 208"/>
+<path class="ink" d="M150 196 L306 196"/>
+<path class="ink" d="M356 196 L398 196"/>
+<path class="pth" d="M352 166 L404 178"/>
+<path class="fig" d="M340 160 L372 178 L402 196"/>
+<text class="lb" x="252" y="166">start</text>
+<text class="lb" x="416" y="172">press out</text>
+</svg>
