@@ -151,6 +151,13 @@
   }
   .body ul{margin:0;padding-left:1.1rem}
   .body li{margin-bottom:.4rem;font-size:.95rem}
+  .video{margin:-.5rem 0 1.15rem;font-size:.9rem}
+  .video a{
+    color:var(--signal);text-decoration:none;font-weight:600;
+    border-bottom:1px solid var(--signal);padding-bottom:1px;
+  }
+  .video a:hover{opacity:.7}
+  .video a::after{content:" \2197"}
   .note{
     font-family:"Spectral",Georgia,serif;font-style:italic;font-size:.95rem;
     color:var(--mute);margin:1rem 0 0;max-width:66ch;
@@ -197,6 +204,7 @@
 
 <footer>
   <div class="wrap">
+    <p>Movement videos by <a href="https://flourishforlifecoaching.com/exerciselibrary" target="_blank" rel="noopener" style="color:inherit">Flourish for Life Coaching</a>.</p>
     <p>Nothing here is medical advice. Pain that is sharp, that swells, or that is worse the next morning is a reason to see a physiotherapist, not to push through.</p>
   </div>
 </footer>
@@ -210,12 +218,16 @@
               image: { start: "images/leg-press-start.jpg",
                        end:   "images/leg-press-end.jpg" }
    captions   optional — defaults to ["Start", "Finish"]
+   video      link to a demonstration video, from the Flourish for Life
+              Coaching library. Hip abduction has no video in that library,
+              so it still points at the lower-body playlist.
    categories muscle groups — these build the first filter row
    patterns   movement patterns — these build the second filter row
    ============================================================ */
 const EXERCISES = [
   {
     slug: "dumbbell-romanian-deadlift",
+    video: "https://www.youtube.com/watch?v=0xi79yljJDM",
     name: "Dumbbell Romanian deadlift",
     categories: ["Hamstrings", "Glutes", "Lower back"],
     patterns: ["Hinge"],
@@ -235,6 +247,7 @@ const EXERCISES = [
   },
   {
     slug: "leg-press",
+    video: "https://www.youtube.com/watch?v=0ju_hgjCRO4",
     name: "Leg press machine",
     categories: ["Quads", "Glutes"],
     patterns: ["Knee-dominant"],
@@ -254,6 +267,7 @@ const EXERCISES = [
   },
   {
     slug: "seated-calf-raise",
+    video: "https://www.youtube.com/watch?v=pS68H5JZBTA",
     name: "Seated calf raise, knee bent",
     categories: ["Calves"],
     patterns: ["Isolation"],
@@ -273,6 +287,7 @@ const EXERCISES = [
   },
   {
     slug: "hip-abduction",
+    video: "https://youtube.com/playlist?list=PLzBP4pBga9-X5x6JnEMmwjWWRiJcMqgMO",
     name: "Hip abduction machine",
     categories: ["Glutes", "Hip abductors"],
     patterns: ["Isolation"],
@@ -290,6 +305,7 @@ const EXERCISES = [
   },
   {
     slug: "shoulder-press",
+    video: "https://www.youtube.com/watch?v=KowSmz7aQb4",
     name: "Shoulder press machine",
     categories: ["Shoulders", "Triceps"],
     patterns: ["Vertical push"],
@@ -306,6 +322,7 @@ const EXERCISES = [
   },
   {
     slug: "lat-pulldown",
+    video: "https://www.youtube.com/watch?v=-j-dAbFDUeQ",
     name: "Lat pulldown machine",
     categories: ["Back", "Biceps"],
     patterns: ["Vertical pull"],
@@ -323,6 +340,7 @@ const EXERCISES = [
   },
   {
     slug: "pallof-press",
+    video: "https://www.youtube.com/watch?v=cfs7Kchd_l8",
     name: "Pallof press",
     categories: ["Core"],
     patterns: ["Anti-rotation"],
@@ -341,6 +359,7 @@ const EXERCISES = [
   },
   {
     slug: "step-up",
+    video: "https://www.youtube.com/watch?v=h4-n081fTfQ",
     name: "Step-up or split squat",
     categories: ["Quads", "Glutes"],
     patterns: ["Knee-dominant", "Single leg"],
@@ -359,6 +378,7 @@ const EXERCISES = [
   },
   {
     slug: "hip-thrust",
+    video: "https://www.youtube.com/watch?v=-tVAo-9YG20",
     name: "Hip thrust",
     categories: ["Glutes", "Hamstrings"],
     patterns: ["Hinge"],
@@ -377,6 +397,7 @@ const EXERCISES = [
   },
   {
     slug: "standing-calf-raise",
+    video: "https://www.youtube.com/watch?v=2WIsBqjcwpg",
     name: "Standing calf raise, knee straight",
     categories: ["Calves"],
     patterns: ["Isolation"],
@@ -395,6 +416,7 @@ const EXERCISES = [
   },
   {
     slug: "single-leg-rdl",
+    video: "https://www.youtube.com/watch?v=V4_3CrE1D-s",
     name: "Single-leg Romanian deadlift",
     categories: ["Hamstrings", "Glutes"],
     patterns: ["Hinge", "Single leg"],
@@ -413,6 +435,7 @@ const EXERCISES = [
   },
   {
     slug: "dumbbell-bench-press",
+    video: "https://www.youtube.com/watch?v=dCIGXFArMwY",
     name: "Dumbbell bench press",
     categories: ["Chest", "Shoulders", "Triceps"],
     patterns: ["Horizontal push"],
@@ -430,6 +453,7 @@ const EXERCISES = [
   },
   {
     slug: "single-arm-row",
+    video: "https://www.youtube.com/watch?v=d900PFmwpmI",
     name: "Single-arm dumbbell row",
     categories: ["Back", "Biceps"],
     patterns: ["Horizontal pull"],
@@ -446,6 +470,7 @@ const EXERCISES = [
   },
   {
     slug: "side-plank",
+    video: "https://www.youtube.com/watch?v=aKJcB7Mvw_Y",
     name: "Side plank",
     categories: ["Core"],
     patterns: ["Anti-lateral flexion"],
@@ -520,6 +545,7 @@ function card(ex) {
       <span class="tag">${esc(ex.equipment)}</span>
     </div>
     <div class="shots">${shots(ex)}</div>
+    ${ex.video ? `<p class="video"><a href="${esc(ex.video)}" target="_blank" rel="noopener">Watch the movement</a></p>` : ""}
     <div class="body">
       <div>
         <h3>How to do it</h3>
